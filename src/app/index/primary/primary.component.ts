@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ManageStandardService } from 'src/app/services/manage-standard.service';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-primary',
@@ -38,7 +39,13 @@ export class PrimaryComponent implements OnInit {
     this.addStandard();
   }
 
-  trackBYStandard(index:number,standard){
-    return standard.id;
+  onDrop(event : CdkDragDrop<string[]>){
+    console.log(event);
+    this._manageStandard.updateParent(event.currentIndex,true,event.previousIndex);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    } 
   }
 }

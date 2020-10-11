@@ -30,21 +30,16 @@ export class ManageStandardService {
     }
   }
 
-  deleteStandard(id:any)
+  deleteStandard(index:any)
   {
-    let deleteFrom = -1;
-    let deleteCount=0;
+    let id = this.standards[index].id;
     for(let i=0;i<this.standards.length;i++)
     {
       if(this.standards[i].parent == id || this.standards[i].subparent == id || this.standards[i].id==id)
       {
         this.standards[i].isDeleted = true;
-        // if(deleteFrom==-1)
-        //   deleteFrom=i;
-        // deleteCount++;
       }
     }
-    //this.standards.splice(deleteFrom,deleteCount);
   }
 
   getStandardIndex(id : any){
@@ -60,7 +55,6 @@ export class ManageStandardService {
 
   updateChild(id : any)
   {
-    console.log("update child");
     for(let i=0;i<this.standards.length;i++)
     {
       if(this.standards[i].subparent==id && this.standards[i].parent!=id)
@@ -68,6 +62,61 @@ export class ManageStandardService {
         this.standards[i].indentLevel--;
         this.standards[i].subparent = this.standards[i].id;
         this.standards[i].parent = id;
+      }
+    }
+  }
+
+  updateParent(index : any ,change? : boolean, currentIndex? :any){
+    let id=this.standards[index].id;
+    console.log(id);
+    
+    let prev: number;
+    prev=index-1;
+    while( prev>-1 && this.standards[prev].isDeleted )
+    {
+      prev--;
+    }
+    if(change)
+    {
+      index=currentIndex;
+    }
+    console.log("prev : "+prev);
+    console.log("indent val : "+this.standards[index].standardValue);
+    console.log(this.standards)
+    if(this.standards[index].indentLevel==0)
+    {
+      this.standards[index].parent=id;
+      this.standards[index].subparent=id;
+      this.updateChild(id);
+    }
+    else if(this.standards[index].indentLevel==1)
+    {
+      if(prev==-1)
+      {
+        this.standards[index].indentLevel--;
+        this.standards[index].parent=id;
+        this.standards[index].subparent=id;
+        this.updateChild(id);
+      }
+      else
+      {
+        
+        this.standards[index].parent=this.standards[prev].parent;
+        this.standards[index].subparent=id;
+      }
+    }
+    else if(this.standards[index].indentLevel==2)
+    {
+      if(this.standards[index].indentLevel-this.standards[prev].indentLevel<=1)
+      {
+        this.standards[index].parent=this.standards[prev].parent;
+        this.standards[index].subparent=this.standards[prev].subparent;
+      }
+      else
+      {
+        this.standards[index].indentLevel--;
+        this.standards[index].parent=this.standards[prev].parent;
+        this.standards[index].subparent=id;
       }
     }
   }

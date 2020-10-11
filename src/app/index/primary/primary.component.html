@@ -14,7 +14,14 @@
 </div>
 <br><br><br><br>
 <hr >
-<div *ngFor="let standard of standards; trackBy:trackBYStandard" >
-<app-secondary *ngIf="!standard.isDeleted" [id]="standard.id"></app-secondary>
+<div
+cdkDropList
+#todoList="cdkDropList"
+[cdkDropListData]="standards"
+(cdkDropListDropped)="onDrop($event)"
+>
+<div *ngFor="let standard of standards"  cdkDrag>
+    <app-secondary *ngIf="!standard.isDeleted" [id]="standard.id"></app-secondary>
+</div>
 </div><br>
 <button (click)="add()"><i class="fa fa-plus-square-o "> </i> Add Standard</button>
