@@ -1,0 +1,17 @@
+<h2>Mathematics</h2>
+<hr>
+<br>
+<span class="action">
+    <p class="head">Actions</p>
+    <p>move,indent,outdent,delete</p>
+</span>
+<span class="standard">
+    <p class="head">Standard</p>
+    <p>The text of the standard</p>
+</span>
+<br>
+<hr>
+<div >
+<app-secondary *ngFor="let standard of standards" [id]="standard.id"></app-secondary>
+</div>
+<button (click)="add()"><i class="fa fa-plus-square-o "> </i> Add Standard</button>

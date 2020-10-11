@@ -1,0 +1,32 @@
+i {
+    color:black
+}
+i:hover{
+    color: rgba(62, 62, 248, 0.87);
+    cursor: pointer;
+}
+.parent {
+    margin-left: 0px;
+    
+}
+.parent input{
+    font-size: 18px;
+    font-weight: bold;
+    color: blue;
+}
+.child {
+    margin-left: 50px;
+    
+}
+.child input{
+    font-size: 15px;
+    color: black;
+}
+.subChild {
+    margin-left : 100px;
+    
+}
+.subChild input{
+    font-size: 15px;
+    color: grey;
+}
