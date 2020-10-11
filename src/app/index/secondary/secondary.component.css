@@ -30,3 +30,14 @@ i:hover{
     font-size: 15px;
     color: grey;
 }
+
+.indentBlock{
+    background-color: rgba(22, 197, 188, 0.425);
+    width : 50px;
+}
+
+.indentBack{
+    margin-left: -50px;
+    height:100%;
+    
+}

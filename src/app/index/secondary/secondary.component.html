@@ -1,16 +1,25 @@
 <div>
-<span class="action">&nbsp;
-<i class="fa fa-arrow-up" (click)="moveUp()"> </i> &nbsp;
-<i class="fa fa-arrow-down" (click)="moveDown()"> </i> &nbsp;
-<i class="fa fa-arrow-left" (click)="indentLeft()"> </i> &nbsp;
-<i class="fa fa-arrow-right" (click)="indentRight()"> </i> &nbsp;
-<i class="fa fa-trash-o" (click)="deleteStandard()"> </i> 
-</span>
-<span class="standard">
-    <span [ngClass]="{'parent': isParent , 'child' : isChild , 'subChild' : isSubChild}">
-        <i class="fa fa-circle"> </i> &nbsp;
-        <input type="text" placeholder="Type Standard here eg. (Numbers)" size="100" name="standardValue" [(ngModel)]="standardValue">
+  <span class="action"
+    >&nbsp; <i class="fa fa-arrow-up" (click)="moveUp()"> </i> &nbsp;
+    <i class="fa fa-arrow-down" (click)="moveDown()"> </i> &nbsp;
+    <i class="fa fa-arrow-left" (click)="indentLeft()"> </i> &nbsp;
+    <i class="fa fa-arrow-right" (click)="indentRight()"> </i> &nbsp;
+    <i class="fa fa-trash-o" (click)="deleteStandard()"> </i>
+  </span>
+  <span class="standard">
+    <span
+      [ngClass]="{ parent: isParent, child: isChild, subChild: isSubChild }"
+    >
+      <span class="indentBlock"> <i class="indentBack">- &nbsp;</i></span>
+      <input
+        type="text"
+        placeholder="Type Standard here eg. (Numbers)"
+        size="100"
+        name="standardValue"
+        [(ngModel)]="standardValue"
+        (ngModelChange)="updateStandard()"
+      />
     </span>
-</span>
+  </span>
 </div>
-<hr>
+<hr />

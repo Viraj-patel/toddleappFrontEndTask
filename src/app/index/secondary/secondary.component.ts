@@ -54,7 +54,7 @@ export class SecondaryComponent implements OnInit {
   }
 
   moveUp(){
-
+    
   }
 
   moveDown(){
@@ -64,29 +64,54 @@ export class SecondaryComponent implements OnInit {
   updateParent(){
     this.index= this._manageStandard.getStandardIndex(this.id);
     let prev;
-    for(let i=1;i<this.data.length;i++)
-    {
+    // for(let i=1;i<this.data.length;i++)
+    // {
       
-      if(this.id == this.data[i].id)
-      {
-          prev=i-1;
-      }
+    //   if(this.id == this.data[i].id)
+    //   {
+    //       prev=i-1;
+    //   }
+    // }
+    prev=this.index-1;
+    while(this.data[prev].isDeleted && prev>-1)
+    {
+      prev--;
     }
-    
     if(this.data[this.index].indentLevel==0)
     {
       this.data[this.index].parent=this.id;
       this.data[this.index].subparent=this.id;
+      this._manageStandard.updateChild(this.id);
     }
     else if(this.data[this.index].indentLevel==1)
     {
-      this.data[this.index].parent=this.data[prev].parent;
-      this.data[this.index].subparent=this.id;
+      if(prev==-1)
+      {
+        this.data[this.index].indentLevel--;
+        this.data[this.index].parent=this.id;
+        this.data[this.index].subparent=this.id;
+        this._manageStandard.updateChild(this.id);
+      }
+      else
+      {
+        
+        this.data[this.index].parent=this.data[prev].parent;
+        this.data[this.index].subparent=this.id;
+      }
     }
     else if(this.data[this.index].indentLevel==2)
     {
-      this.data[this.index].parent=this.data[prev].parent;
-      this.data[this.index].subparent=this.data[prev].subparent;
+      if(this.data[this.index].indentLevel-this.data[prev].indentLevel<=1)
+      {
+        this.data[this.index].parent=this.data[prev].parent;
+        this.data[this.index].subparent=this.data[prev].subparent;
+      }
+      else
+      {
+        this.data[this.index].indentLevel--;
+        this.data[this.index].parent=this.data[prev].parent;
+        this.data[this.index].subparent=this.id;
+      }
     }
   }
 
@@ -114,5 +139,12 @@ export class SecondaryComponent implements OnInit {
   deleteStandard(){
     this.index= this._manageStandard.getStandardIndex(this.id);
     this._manageStandard.deleteStandard(this.index);
+  }
+
+  updateStandard(){
+    this.index= this._manageStandard.getStandardIndex(this.id);
+    this.data[this.index].standardValue=this.standardValue;
+    this._manageStandard.updateStandard(this.id,this.data[this.index]);
+    // this._manageStandard.updateStandardValue(this.standardValue);
   }
 }

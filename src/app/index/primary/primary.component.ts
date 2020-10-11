@@ -26,8 +26,8 @@ export class PrimaryComponent implements OnInit {
       parent : this.id,
       subparent : this.id,
       indentLevel : 0,
-      standardValue : ""
-      
+      standardValue : "",
+      isDeleted : false
     }
     this.standards = this._manageStandard.addStandard(this.data);
     
@@ -38,4 +38,7 @@ export class PrimaryComponent implements OnInit {
     this.addStandard();
   }
 
+  trackBYStandard(index:number,standard){
+    return standard.id;
+  }
 }

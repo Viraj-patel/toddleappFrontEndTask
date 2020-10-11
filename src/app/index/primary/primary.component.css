@@ -1,20 +1,37 @@
 p {
     color: grey;
+    margin-top: -10px;
 }
 .head{
     font-weight: bold;
     font-size: large;
     color: black;
+    margin-top: 5px;
 }
 button {
     background-color : rgba(62, 62, 248, 0.87);
     color : white;
-    width : 90%;
+    width : 99%;
     border : none;
     border-radius: 5px;
-    margin-left: 5%;
-    font-size: large;
+    margin-left: 0.5%;
+    /* font-size: larger; */
+    font-weight: 800;
     padding: 5px;
+    height: 43px;
     cursor: pointer;
 }
 
+
+.action1{
+    
+    width:350px;
+    
+    float: left;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+.standard1{
+    float: left;
+    margin-top: -10px;
+}

@@ -23,6 +23,13 @@ export class ManageStandardService {
     this.standards[id]=data;
   }
 
+  updateStandardValue(value: any){
+    for(let i=0;i<this.standards.length;i++)
+    {
+      this.standards[i].standardValue = value;
+    }
+  }
+
   deleteStandard(id:any)
   {
     let deleteFrom = -1;
@@ -31,13 +38,13 @@ export class ManageStandardService {
     {
       if(this.standards[i].parent == id || this.standards[i].subparent == id || this.standards[i].id==id)
       {
-
-        if(deleteFrom==-1)
-          deleteFrom=i;
-        deleteCount++;
+        this.standards[i].isDeleted = true;
+        // if(deleteFrom==-1)
+        //   deleteFrom=i;
+        // deleteCount++;
       }
     }
-    this.standards.splice(deleteFrom,deleteCount);
+    //this.standards.splice(deleteFrom,deleteCount);
   }
 
   getStandardIndex(id : any){
@@ -47,6 +54,20 @@ export class ManageStandardService {
       if(this.standards[i].id==id)
       {
         return i;
+      }
+    }
+  }
+
+  updateChild(id : any)
+  {
+    console.log("update child");
+    for(let i=0;i<this.standards.length;i++)
+    {
+      if(this.standards[i].subparent==id && this.standards[i].parent!=id)
+      {
+        this.standards[i].indentLevel--;
+        this.standards[i].subparent = this.standards[i].id;
+        this.standards[i].parent = id;
       }
     }
   }
