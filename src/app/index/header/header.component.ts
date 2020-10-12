@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
     if(this._manageStandard.getStandard().length>0)
     {
       this.standards = this._manageStandard.getStandard();
+      this.id=this._manageStandard.getStandard().length;
     }
     else
     {
