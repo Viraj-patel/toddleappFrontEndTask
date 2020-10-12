@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   id: number;
   standards:any = [];
   data: object = {};
-  fileToUpload : any;
   viewExistingStandard : any;
   content : any = '';
 
