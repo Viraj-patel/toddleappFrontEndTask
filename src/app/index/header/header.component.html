@@ -26,5 +26,18 @@
 <button (click)="add()">
   <i class="fa fa-plus-square-o"> </i> Add Standard</button
 ><br /><br />
-<button (click)="save()">Save</button><br><br>
-<!-- <input type="file" (change)="handleFileInput($event.target.value)"> -->
+
+<button class="saveLoad" (click)="save()">Save</button>&nbsp;
+<button
+  class="saveLoad"
+  onclick="document.getElementById('selectedFile').click();"
+>
+  Load
+</button>
+
+<input
+  type="file"
+  id="selectedFile"
+  style="display: none"
+  (change)="handleFileInput($event.target.files)"
+/>

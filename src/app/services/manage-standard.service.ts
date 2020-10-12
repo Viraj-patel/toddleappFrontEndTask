@@ -11,7 +11,6 @@ export class ManageStandardService {
 
   addStandard(data : any){
     this.standards.push(data);
-    console.log(this.standards)
     return this.standards;
   }
 
@@ -68,7 +67,6 @@ export class ManageStandardService {
 
   updateParent(index : any ,change? : boolean, currentIndex? :any){
     let id=this.standards[index].id;
-    console.log(id);
     
     let prev: number;
     prev=index-1;
@@ -80,9 +78,6 @@ export class ManageStandardService {
     {
       index=currentIndex;
     }
-    console.log("prev : "+prev);
-    console.log("indent val : "+this.standards[index].standardValue);
-    console.log(this.standards)
     if(this.standards[index].indentLevel==0)
     {
       this.standards[index].parent=id;
@@ -119,5 +114,11 @@ export class ManageStandardService {
         this.standards[index].subparent=id;
       }
     }
+  }
+
+  loadStandard(fileContent : any)
+  {
+    this.standards=[];
+    this.standards=JSON.parse(fileContent);
   }
 }
