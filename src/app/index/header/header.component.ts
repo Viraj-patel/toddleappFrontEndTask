@@ -2,17 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { ManageStandardService } from 'src/app/services/manage-standard.service';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
-@Component({
-  selector: 'app-primary',
-  templateUrl: './primary.component.html',
-  styleUrls: ['./primary.component.css']
-})
-export class PrimaryComponent implements OnInit {
-  id: any;
-  standards:any = {};
-  data: any = {};
+import { SavefileService } from 'src/app/services/savefile.service';
 
-  constructor(private _manageStandard : ManageStandardService) { 
+@Component({
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
+})
+export class HeaderComponent implements OnInit {
+  id: number;
+  standards:any = [];
+  data: object = {};
+  fileToUpload : any;
+
+  constructor(private _manageStandard : ManageStandardService,private _saveService : SavefileService) { 
   }
 
   ngOnInit(): void {
@@ -40,7 +43,6 @@ export class PrimaryComponent implements OnInit {
   }
 
   onDrop(event : CdkDragDrop<string[]>){
-    console.log(event);
     this._manageStandard.updateParent(event.currentIndex,true,event.previousIndex);
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data,
@@ -48,4 +50,12 @@ export class PrimaryComponent implements OnInit {
         event.currentIndex);
     } 
   }
+
+  save(){
+    this._saveService.downloadFile(this.standards);
+  }
+
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+}
 }

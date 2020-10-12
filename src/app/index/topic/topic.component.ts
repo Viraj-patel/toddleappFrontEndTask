@@ -2,15 +2,15 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ManageStandardService } from 'src/app/services/manage-standard.service';
 
 @Component({
-  selector: 'app-secondary',
-  templateUrl: './secondary.component.html',
-  styleUrls: ['./secondary.component.css']
+  selector: 'app-topic',
+  templateUrl: './topic.component.html',
+  styleUrls: ['./topic.component.css']
 })
-export class SecondaryComponent implements OnInit {
+export class TopicComponent implements OnInit {
 
-  @Input() id : any;
+  @Input() id : number;
 
-  data : any;
+  data : object;
   index : any;
 
   isParent : boolean;
