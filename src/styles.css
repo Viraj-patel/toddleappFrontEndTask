@@ -1,18 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
-.action{
-    
-    width:350px;
-    height:auto;
-    float: left;
+.action {
+  width: 350px;
+  height: auto;
+  float: left;
 }
-.standard{
-    position: relative;
+.standard {
+  position: relative;
 }
 hr {
-    color:lightgrey;
+  color: lightgrey;
 }
 input {
-    border : none;
+  border: none;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
